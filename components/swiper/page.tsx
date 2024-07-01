@@ -1,41 +1,57 @@
 "use client"
 import React from 'react';
-
 // Import Swiper React components
 import { Swiper, SwiperSlide } from 'swiper/react';
-import 'swiper/css/autoplay';
-import 'swiper/css/navigation';
+import {data_product} from '../../interfaces/products'
+
 // Import Swiper styles
 import 'swiper/css';
 import 'swiper/css/free-mode';
 import 'swiper/css/pagination';
 import ProductCard from '../products/page'
 import './style.css';
+
+// import required modules
 import { FreeMode, Pagination } from 'swiper/modules';
 
-export default function App() {
+export default function App({data}:any) {
   return (
     <>
       <Swiper
-        spaceBetween={50}
         slidesPerView={4}
-        onSlideChange={() => console.log('slide change')}
-        onSwiper={(swiper) => console.log(swiper)}
+        spaceBetween={30}
+        freeMode={true}
+        loop={true}
         pagination={{
           clickable: true,
         }}
         modules={[FreeMode, Pagination]}
-        className="mySwiper "
+        className="mySwiper"
+        breakpoints={{
+          // when window width is >= 1024px (desktop)
+          1024: {
+            slidesPerView: 4,
+          },
+          // when window width is >= 768px (tablet)
+          768: {
+            slidesPerView: 3,
+          },
+          // when window width is >= 320px (mobile)
+          320: {
+            slidesPerView: 2,
+          },
+        }}
       >
-        <SwiperSlide><ProductCard/></SwiperSlide>
-        <SwiperSlide><ProductCard/></SwiperSlide>
-        <SwiperSlide><ProductCard/></SwiperSlide>
-        <SwiperSlide><ProductCard/></SwiperSlide>
-        <SwiperSlide><ProductCard/></SwiperSlide>
-        <SwiperSlide><ProductCard/></SwiperSlide>
-        <SwiperSlide><ProductCard/></SwiperSlide>
+         {
+          data?.map((e:data_product, i:number) => {
+            return (
+              <SwiperSlide key={i}>
+                <ProductCard datas={e}/>
+              </SwiperSlide>
+            )
+          })
+         }
       </Swiper>
     </>
-   
   );
 }

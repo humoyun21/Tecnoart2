@@ -3,8 +3,8 @@ import React, { useEffect } from "react";
 import Container from "../container/page";
 import Image from "next/image";
 import LOGO from "../../images/LOGO.png";
-import { Button, Input, Avatar, Badge } from "antd";
-import { ArrowRightOutlined, BarChartOutlined, CloseOutlined, HeartOutlined, MenuOutlined, SearchOutlined, ShoppingCartOutlined, UserOutlined } from "@ant-design/icons";
+import { Button, Input, Avatar, Badge, Drawer } from "antd";
+import { ArrowRightOutlined, BarChartOutlined, CloseOutlined, HeartOutlined, MenuOutlined,  SearchOutlined, ShoppingCartOutlined, UnorderedListOutlined, UserOutlined } from "@ant-design/icons";
 import "./style.css";
 import useCategoryStore from '@/store/categories/page';
 import useSubCategoryStore from "@/store/sub-categories/page";
@@ -19,6 +19,7 @@ import Muzlatgich from '@/images/muzlatgich.svg'
 import Cookies from 'js-cookie'
 
 
+
 import { useState } from "react";
 import Link from "next/link";
 
@@ -30,7 +31,9 @@ function Index() {
   const {subcategories, getSubCategories} = useSubCategoryStore()
   const [category, setcategory] = useState('')
   const iconCategory = [Aksiya, Telefon, WashingCard, Desktop, Konditseoner, PC, ChangYutgich, Muzlatgich]
-  
+  const [openDrawer, setOpenDrawer] = useState(false);
+  const [openCategory, setOpenCategory] = useState(false);
+
 
   async function getSub(e: any){
     setcategory(e.name)
@@ -42,12 +45,28 @@ function Index() {
     localStorage.setItem('SubCategory', JSON.stringify(id))
   }
 
+  const showDrawer = () => {
+    setOpenDrawer(true);
+  };
+
+  const onClose = () => {
+    setOpenDrawer(false);
+  };
+
+  const showCategory = () => {
+    setOpenCategory(true);
+  };
+
+  const onCategory = () => {
+    setOpenCategory(false);
+  };
+
   useEffect(() =>{
     getCategories()
   }, [])
   return (
     <header>
-      <div className="py-[10px] bg-[#F0F0F0]">
+      <div className="py-[10px] bg-[#F0F0F0] ">
         <Container>
           <div className="flex justify-between items-center">
             <ul className="flex items-center gap-[20px]">
@@ -81,7 +100,7 @@ function Index() {
       
       <div>
         <Container>
-          <div className="py-[30px] px-[60px] flex justify-between bg-[white] rounded-md relative">
+          <div className="py-[30px] px-[60px] flex justify-between bg-[white] rounded-md relative max-lg:px-4 duration-300">
           <div onClick={() => Cookies.set('aboutus', 'Biz  haqimizda')} className='text-[14px] font-medium cursor-pointer'><Link href={'/#'}> <Image
               className="ml-[30px]"
               src={LOGO}
@@ -89,9 +108,8 @@ function Index() {
               height={40}
               alt="Picture of the author"
             /></Link></div>
-            
 
-            <div className="flex gap-[16px] items-center">
+            <div className="flex gap-[16px] items-center max-lg:hidden">
               <Button onClick={() => setOpen(!open)} className="category_btn bg-[#1EB91E] w-[180px] text-white text-[14px] font-bold py-[15px] px-[36px] h-[46px]">
                   {
                     open?
@@ -101,7 +119,7 @@ function Index() {
                   }
                   {
                     open?
-                    "Kategoriya"
+                    "Katagoriya"
                     :
                     "Kategoriya"
                   }
@@ -120,13 +138,11 @@ function Index() {
                         return (
                           <div key={i} onClick={() => getSub(e)} className={` ${e.name == category ? "bg-[#FF6F14] text-white" : "bg-[#F0F0F0]"} hover:bg-[#FF6F14] hover:text-white font-semibold mt-[10px] flex items-center justify-between w-[440px] h-[50px] py-[35px] px-[59px] rounded-xl cursor-pointer card `}>
                               <Image
-                              
                               src={iconCategory[i]}
                               alt={e.name}
                               className="w-[30px] h-[30px] rasm"
                               />
                               <p>{e.name}</p>
-                              
                               <ArrowRightOutlined />
                           </div>
                         )
@@ -150,26 +166,62 @@ function Index() {
             </div>
 
             <div className="flex items-center gap-[15px]">
-              <Badge count={2} >
+              <Badge className=" max-lg:hidden" count={2} >
                 <Avatar shape="square" size="large" className="bg-[#F0F0F0] cursor-pointer" >
                     <HeartOutlined className="text-[20px] text-[black]" />
                 </Avatar>
               </Badge>
-              <Badge count={6} >
+              <Badge className=" max-lg:hidden" count={6} >
                 <Avatar shape="square" size="large" className="bg-[#F0F0F0] cursor-pointer">
                     <BarChartOutlined className="text-[20px] text-[black]"/>
                 </Avatar>
               </Badge>
-              <Link href={'/card'}>
+              <Link href={'/card'} className=" max-lg:hidden">
               <Badge count={7} >
                 <Avatar shape="square" size="large" className="bg-[#F0F0F0] cursor-pointer">
                     <ShoppingCartOutlined className="text-[20px] text-[black]" />
                 </Avatar>
               </Badge>
               </Link>
+              <MenuOutlined onClick={() => showDrawer()} className=" max-lg:block hidden cursor-pointer text-[24px]" />
               <Avatar size="large" icon={<UserOutlined className="text-[20px] text-[black]"/>} className="bg-[#F0F0F0] cursor-pointer"/>
             </div>
           </div>
+
+          <div className="max-sm:block hidden duration-300">
+          <Button onClick={() => showCategory()} className="category_btn bg-[#1EB91E] w-[100%] text-white text-[14px] font-bold py-[15px] px-[36px] h-[46px]">
+                  {
+                    open?
+                    <CloseOutlined className=" text-[18px]"/>
+                    :
+                    <MenuOutlined className=" text-[18px] rotate-180" />
+                  }
+                  {
+                    open?
+                    "Katagoriya"
+                    :
+                    "Kategoriya"
+                  }
+          </Button>
+          <Input
+                placeholder="Хочу купить..."
+                className="search_inputt"
+                prefix={<SearchOutlined />} 
+              />
+          </div>
+
+          <Drawer title="Menu"  width={300} onClose={onClose} open={openDrawer}>
+            <p className="font-medium text-[18px] mb-[10px] cursor-pointer bg-[white] hover:bg-[#f0f0f0] px-[10px] py-[10px] rounded-md">Card</p>
+            <p className="font-medium text-[18px] mb-[10px] cursor-pointer bg-[white] hover:bg-[#f0f0f0] px-[10px] py-[10px] rounded-md">Fovourite Product</p>
+            <p className="font-medium text-[18px] mb-[10px] cursor-pointer bg-[white] hover:bg-[#f0f0f0] px-[10px] py-[10px] rounded-md">Settings</p>
+            <p className="font-medium text-[18px] mb-[10px] cursor-pointer bg-[white] hover:bg-[#f0f0f0] px-[10px] py-[10px] rounded-md">My Accaunt</p>
+          </Drawer>
+          <Drawer placement="left" title="Menu"  width={300} onClose={onCategory} open={openCategory}>
+            <p className="font-medium text-[18px] mb-[10px] cursor-pointer bg-[white] hover:bg-[#f0f0f0] px-[10px] py-[10px] rounded-md">Card</p>
+            <p className="font-medium text-[18px] mb-[10px] cursor-pointer bg-[white] hover:bg-[#f0f0f0] px-[10px] py-[10px] rounded-md">Fovourite Product</p>
+            <p className="font-medium text-[18px] mb-[10px] cursor-pointer bg-[white] hover:bg-[#f0f0f0] px-[10px] py-[10px] rounded-md">Settings</p>
+            <p className="font-medium text-[18px] mb-[10px] cursor-pointer bg-[white] hover:bg-[#f0f0f0] px-[10px] py-[10px] rounded-md">My Accaunt</p>
+          </Drawer>
         </Container>
       </div>
     </header>

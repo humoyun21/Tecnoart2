@@ -1,6 +1,6 @@
 import { DeleteOutlined, HeartOutlined } from '@ant-design/icons';
 import React, { useState } from 'react';
-import './style.css'; 
+import './style.css'; // Assuming you have a CSS file for styles
 
 function Page() {
     const [count, setCount] = useState(1);
