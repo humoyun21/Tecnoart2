@@ -4,7 +4,7 @@ import Container from "../container/page";
 import Image from "next/image";
 import LOGO from "../../images/LOGO.png";
 import { Button, Input, Avatar, Badge, Drawer } from "antd";
-import { ArrowRightOutlined, BarChartOutlined, CloseOutlined, HeartOutlined, MenuOutlined,  SearchOutlined, ShoppingCartOutlined, UnorderedListOutlined, UserOutlined } from "@ant-design/icons";
+import { ArrowRightOutlined, BarChartOutlined, CloseOutlined, HeartOutlined, MenuOutlined, PhoneOutlined, SearchOutlined, ShoppingCartOutlined, UnorderedListOutlined, UserOutlined } from "@ant-design/icons";
 import "./style.css";
 import useCategoryStore from '@/store/categories/page';
 import useSubCategoryStore from "@/store/sub-categories/page";
@@ -17,7 +17,6 @@ import PC from '@/images/pc.svg'
 import ChangYutgich from '@/images/chang_yutgich.svg'
 import Muzlatgich from '@/images/muzlatgich.svg'
 import Cookies from 'js-cookie'
-
 
 
 import { useState } from "react";
@@ -66,7 +65,7 @@ function Index() {
   }, [])
   return (
     <header>
-      <div className="py-[10px] bg-[#F0F0F0] ">
+      <div className="py-[10px] bg-[#F0F0F0] max-lg:hidden">
         <Container>
           <div className="flex justify-between items-center">
             <ul className="flex items-center gap-[20px]">
@@ -101,13 +100,15 @@ function Index() {
       <div>
         <Container>
           <div className="py-[30px] px-[60px] flex justify-between bg-[white] rounded-md relative max-lg:px-4 duration-300">
-          <div onClick={() => Cookies.set('aboutus', 'Biz  haqimizda')} className='text-[14px] font-medium cursor-pointer'><Link href={'/#'}> <Image
-              className="ml-[30px]"
-              src={LOGO}
-              width={140}
-              height={40}
-              alt="Picture of the author"
-            /></Link></div>
+            <Link href={'/'} >
+              <Image
+                className="ml-[30px]"
+                src={LOGO}
+                width={140}
+                height={40}
+                alt="Picture of the author"
+              />
+            </Link>
 
             <div className="flex gap-[16px] items-center max-lg:hidden">
               <Button onClick={() => setOpen(!open)} className="category_btn bg-[#1EB91E] w-[180px] text-white text-[14px] font-bold py-[15px] px-[36px] h-[46px]">
@@ -115,11 +116,11 @@ function Index() {
                     open?
                     <CloseOutlined className=" text-[18px]"/>
                     :
-                    <MenuOutlined className=" text-[18px] rotate-180" />
+                    <UnorderedListOutlined className=" text-[18px] rotate-180" />
                   }
                   {
                     open?
-                    "Katagoriya"
+                    "Yopish"
                     :
                     "Kategoriya"
                   }
@@ -184,7 +185,9 @@ function Index() {
               </Badge>
               </Link>
               <MenuOutlined onClick={() => showDrawer()} className=" max-lg:block hidden cursor-pointer text-[24px]" />
+              <Link href={'profile'}>
               <Avatar size="large" icon={<UserOutlined className="text-[20px] text-[black]"/>} className="bg-[#F0F0F0] cursor-pointer"/>
+              </Link>
             </div>
           </div>
 
@@ -198,7 +201,7 @@ function Index() {
                   }
                   {
                     open?
-                    "Katagoriya"
+                    "Yopish"
                     :
                     "Kategoriya"
                   }

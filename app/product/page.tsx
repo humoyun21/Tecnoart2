@@ -149,7 +149,7 @@ function Product() {
                   Telfon xususiyatlari
                 </button>
                 <button
-                  onClick={() => setcommets("Mijozlarni fikri")}
+                  // onClick={() => setcommets("Mijozlarni fikri")}
                   className={`${
                     comments == "Mijozlarni fikri"
                       ? "bg-[#FF6F14] text-white duration-300"

@@ -3,7 +3,7 @@ import { Carousel } from 'antd';
 import Container from '../container/page';
 import './style.css';
 import Image from 'next/image';
-import Text_img from '../../images/caruseltext.png';
+import Text_img from '../../images/111.png';
 import Img from '../../images/Carusel.png';
 
 const App: React.FC = () => (
@@ -12,20 +12,19 @@ const App: React.FC = () => (
       <Carousel arrows infinite={true} autoplay={true} className='rounded-lg overflow-hidden custom-carousel'>
         <div>
           <div className='carousel'>
-            <Image src={Text_img} width={631} height={180} alt='Text Image' className='pt-[92px] ml-[80px]'/>
-            <Image src={Img} width={1360} height={400} alt='Carousel Image' className='absolute right-0 top-0'/>
+            <Image src={Text_img} alt='Text Image' className=''/>
+           
           </div>
         </div>
         <div>
           <div className='carousel'>
-            <Image src={Text_img} width={631} height={180} alt='Text Image' className='pt-[92px] ml-[80px]'/>
-            <Image src={Img} width={1360} height={400} alt='Carousel Image' className='absolute right-0 top-0'/>
+            <Image src={Text_img}  alt='Text Image' className=''/>
+         
           </div>
         </div>
         <div>
           <div className='carousel'>
-            <Image src={Text_img} width={631} height={180} alt='Text Image' className='pt-[92px] ml-[80px]'/>
-            <Image src={Img} width={1360} height={400} alt='Carousel Image' className='absolute right-0 top-0'/>
+            <Image src={Text_img}  alt='Text Image' className=''/>
           </div>
         </div>
       </Carousel>
