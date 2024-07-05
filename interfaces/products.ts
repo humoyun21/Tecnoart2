@@ -10,4 +10,5 @@ export interface data_product{
 export interface request_products{
     products: data_product[];
     getProducts: () => any;
+    getProductsId: (id: number) => any
 }
