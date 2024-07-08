@@ -149,7 +149,7 @@ function Product() {
                   Telfon xususiyatlari
                 </button>
                 <button
-                  // onClick={() => setcommets("Mijozlarni fikri")}
+                  onClick={() => setcommets("Mijozlarni fikri")}
                   className={`${
                     comments == "Mijozlarni fikri"
                       ? "bg-[#FF6F14] text-white duration-300"
@@ -243,36 +243,34 @@ function Product() {
                   ) : (
                     <div className="flex flex-col gap-[20px] mt-[40px] mb-[50px]">
                       <div className="w-[100%] bg-white py-[30px] px-[40px] rounded-xl flex justify-between gap-[50px] items-center">
-                        <Tooltip title="A'zamxon Axmedov" placement="top">
-                            <Avatar className="w-[130px] h-[80px] max-sm:h-[50px]" src="https://api.dicebear.com/7.x/miniavs/svg?seed=1" />
-                        </Tooltip>
+                        
                         <div className="w-[70%}">
-                          <h4 className="font-bold text-[24px] mb-[10px] max-sm:text-[18px]">Azamxon Axmedov</h4>
-                          <p className="font-medium text-[#240E00CC] text-[16px] max-sm:text-[13px]">Супер!! Спасибо продавцу, все пришло аккуратно. Телефон крутой не жалею о покупке. Советую тем, кому нужен хороший экран, оптимизация и тд!!!! Цвет темно синий, а на свету хамелеон</p>
+                         
+                          <p className="font-medium text-[#240E00CC] text-[16px] max-sm:text-[13px]"> Super!! Sotuvchiga rahmat, hamma narsa mukammal. Telefon ajoyib va ​​arzon. Sovetuyu tem, komu nujen horoshi ekran, optimizatsiya i td!!!! Tsvet dark siniy, a na svetu xameleon</p>
                         </div>
                       </div>
                       <div className="w-[100%] bg-white py-[30px] px-[40px] rounded-xl flex justify-between gap-[50px] items-start">
-                        <Tooltip title="Наташа" placement="top">
-                        <Avatar
-                            className="w-[120px] h-[60px]"
-                            style={{ backgroundColor: "#87d068" }}
-                            icon={<UserOutlined />}
-                          />
-                        </Tooltip>
+                       
                         <div className="w-[70%}">
-                          <h4 className="font-bold text-[24px] mb-[10px] max-sm:text-[18px]">Наташа</h4>
-                          <p className="font-medium text-[#240E00CC] text-[16px] max-sm:text-[13px]">Спасибо вам огромное за быстрый доставку. Узум маркет номер один. Подарок дочке понравился она рада. Спасибо вам огромное 🫶🫶🫶</p>
+
+                          <p className="font-medium text-[#240E00CC] text-[16px] max-sm:text-[13px]">Super!! Sotuvchiga rahmat, hamma narsa mukammal. Telefon ajoyib va ​​arzon. Sovetuyu tem, komu nujen horoshi ekran, optimizatsiya i td!!!! Tsvet dark siniy, a na svetu xameleon</p>
                         </div>
                       </div>
                       <div className="w-[100%] bg-white py-[30px] px-[40px] rounded-xl flex justify-between gap-[50px] items-start">
-                        <Tooltip title="Kamronbek" placement="top">
-                          <Avatar className="w-[120px] h-[60px]" style={{ backgroundColor: "#f56a00" }}>K</Avatar>
-                        </Tooltip>
-                        <div className="w-[70%}">
-                          <h4 className="font-bold text-[24px] mb-[10px] max-sm:text-[18px]">Kamronbek</h4>
-                          <p className="font-medium text-[#240E00CC] text-[16px] max-sm:text-[13px]">Telefon juda yoqti bir kunda yetkazib berishti oylaganimdan yaxshiroq ekan tafsiya qilaman uzumdan harid qilishilarni 👍👍👍👍👍👍</p>
-                        </div>
-                      </div>
+                       
+                       <div className="w-[70%}">
+
+                         <p className="font-medium text-[#240E00CC] text-[16px] max-sm:text-[13px]">Super!! Sotuvchiga rahmat, hamma narsa mukammal. Telefon ajoyib va ​​arzon. Sovetuyu tem, komu nujen horoshi ekran, optimizatsiya i td!!!! Tsvet dark siniy, a na svetu xameleon</p>
+                       </div>
+                     </div>
+                     <div className="w-[100%] bg-white py-[30px] px-[40px] rounded-xl flex justify-between gap-[50px] items-start">
+                       
+                       <div className="w-[70%}">
+
+                         <p className="font-medium text-[#240E00CC] text-[16px] max-sm:text-[13px]">Super!! Sotuvchiga rahmat, hamma narsa mukammal. Telefon ajoyib va ​​arzon. Sovetuyu tem, komu nujen horoshi ekran, optimizatsiya i td!!!! Tsvet dark siniy, a na svetu xameleon</p>
+                       </div>
+                     </div>
+                      
                     </div>
                   )}
                 </div>
