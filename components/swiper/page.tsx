@@ -1,56 +1,75 @@
-"use client"
-import React from 'react';
-// Import Swiper React components
-import { Swiper, SwiperSlide } from 'swiper/react';
-import {data_product} from '../../interfaces/products'
+"use client";
+import React, { useEffect, useState } from "react";
+import { Swiper, SwiperSlide } from "swiper/react";
+import "swiper/css/autoplay";
+import "swiper/css/navigation";
+import "swiper/css";
+import "swiper/css/free-mode";
+import "swiper/css/pagination";
+import ProductCard from "../products/page";
+import "./style.css";
+import { FreeMode, Pagination } from "swiper/modules";
+import useProductStore from "@/store/products/page";
 
-// Import Swiper styles
-import 'swiper/css';
-import 'swiper/css/free-mode';
-import 'swiper/css/pagination';
-import ProductCard from '../products/page'
-import './style.css';
+export default function App() {
+  const [data, setData] = useState<any>([]);
+  const { getProduct } = useProductStore();
 
-// import required modules
-import { FreeMode, Pagination } from 'swiper/modules';
+  const getData = async () => {
+    const res = await getProduct("", 10, 1);
+    if (res && res.status === 200) {
+      setData(res.data.data.products);
+    }
+  };
 
-export default function App({data}:any) {
+  useEffect(() => {
+    getData();
+  }, []);
+
   return (
     <>
       <Swiper
-        slidesPerView={4}
         spaceBetween={30}
-        freeMode={true}
-        loop={true}
+        slidesPerView={1}
+        onSlideChange={() => console.log("slide change")}
+        onSwiper={(swiper) => console.log(swiper)}
         pagination={{
           clickable: true,
         }}
-        modules={[FreeMode, Pagination]}
-        className="mySwiper"
+        autoplay
+        centeredSlidesBounds={true}
         breakpoints={{
-          // when window width is >= 1024px (desktop)
+          369: {
+            slidesPerView: 1,
+            spaceBetween: 60,
+          },
+          768: {
+            slidesPerView: 2,
+            spaceBetween: 60,
+          },
+          860: {
+            slidesPerView: 3,
+            spaceBetween: 60,
+          },
           1024: {
             slidesPerView: 4,
-          },
-          // when window width is >= 768px (tablet)
-          768: {
-            slidesPerView: 3,
-          },
-          // when window width is >= 320px (mobile)
-          320: {
-            slidesPerView: 2,
+            spaceBetween: 60,
           },
         }}
+        modules={[FreeMode, Pagination]}
+        className="mySwiper"
       >
-         {
-          data?.map((e:data_product, i:number) => {
-            return (
-              <SwiperSlide key={i}>
-                <ProductCard datas={e}/>
-              </SwiperSlide>
-            )
-          })
-         }
+        {data.length > 0 ? (
+          data.map((product:any) => (
+            <SwiperSlide key={product.id}>
+              <ProductCard img={product.images[0]} name={product.name} cost={product.price} id={product.id}/>
+            </SwiperSlide>
+          ))
+        ) : (
+          <SwiperSlide>
+            <div>No products available</div>
+          </SwiperSlide>
+        )}
       </Swiper>
     </>
   );

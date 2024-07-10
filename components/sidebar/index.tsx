@@ -1,12 +1,10 @@
+"use client";
 import { Slider, Radio } from "antd";
-import React, { useCallback, useState } from "react";
+import React, { useState } from "react";
 
-export default function page() {
+export default function index() {
   const [slide1, setSlide1] = useState(3000000); // Default value in millions
   const [slide2, setSlide2] = useState(13000000); // Default value in millions
-
-
-
   const convertToSliderValue = (value: any) =>
     Math.round((value - 40000) / 10000);
   const convertToMillionValue = (value: any) => value * 100000 + 1000000;
@@ -21,9 +19,8 @@ export default function page() {
     setSlide2(convertToMillionValue(value[1]));
   };
   return (
-    <div>
-      {" "}
-      <div className="w-[250px] h-[auto] rounded-[10px] bg-[white] px-[40px]">
+    <>
+      <div className="w-[356px] h-[auto] rounded-[10px] bg-[white] p-[40px] hidden lg:block">
         <p className="flex gap-2 items-center mb-[20px]">
           <span className="font-bold text-[14px] lg:text-[24px]">Narx</span>
           <span className="text-[12px] lg:text-[18px] ">(Somda)</span>
@@ -251,6 +248,6 @@ export default function page() {
           </Radio.Group>
         </div>
       </div>
-    </div>
+    </>
   );
 }
