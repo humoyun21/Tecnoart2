@@ -44,7 +44,7 @@ export default function Home() {
                   href={"/categories"}
                   key={i}
                   onClick={() =>
-                    localStorage.setItem("CategoryId", JSON.stringify(e.id))
+                    console.log("first")
                   }
                 >
                   <div className="duration-200 hover:scale-105 flex items-center justify-between w-[350px] lg:w-[440px] h-[100px] lg:h-[120px] py-[45px] px-[59px] bg-white rounded-xl cursor-pointer card">
@@ -64,7 +64,7 @@ export default function Home() {
             <Link
               href={"/categories"}
               onClick={() =>
-                localStorage.setItem("CategoryId", JSON.stringify(0))
+                console.log("first")
               }
             >
               <div className="duration-200 hover:scale-105 flex items-center justify-between w-[350px] lg:w-[440px] h-[100px] lg:h-[120px] py-[45px] px-[59px] bg-white rounded-xl cursor-pointer card">
